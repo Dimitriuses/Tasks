@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tasks"
+        
+        xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -15,6 +17,6 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="353" Grid.Row="1" VerticalAlignment="Top" Width="396"/>
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="353" Grid.Row="1" VerticalAlignment="Top" Width="396" AutoGenerateColumns="True"/>
     </Grid>
 </Window>

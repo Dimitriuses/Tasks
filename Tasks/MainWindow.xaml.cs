@@ -24,7 +24,9 @@ namespace Tasks
         public MainWindow()
         {
             InitializeComponent();
-            
+            List<Task> result = new List<Task>();
+            result.Add(new Task(1, "Майкл Джексон"));
+            dataGrid.ItemsSource = result;
         }
     }
 }
