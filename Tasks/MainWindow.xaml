@@ -10,13 +10,53 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="66*"/>
-            <RowDefinition Height="353*"/>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="384*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="43*"/>
+            <ColumnDefinition Width="29*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="353" Grid.Row="1" VerticalAlignment="Top" Width="396" AutoGenerateColumns="True"/>
+        <DataGrid x:Name="dataGrid" Grid.Row="1" AutoGenerateColumns="True"/>
+        <!--ItemsSource="{Binding Tasks}"-->
+        <!--<DataGrid.CellStyle>
+                <Style TargetType="{x:Type DataGridCell}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Responding}" Value="True">
+                            <Setter Property="Foreground" Value="Green" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Responding}" Value="False">
+                            <Setter Property="Foreground" Value="Red" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+        </DataGrid>-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="button1" Content="Stop" Click="Button1_Click" Grid.Column="2"/>
+            <Button x:Name="button" Content="Play" Click="Button_Click"/>
+            <Label x:Name="label" Content=" " Margin="5,0,0,0" Grid.Column="1"/>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="133*"/>
+                <RowDefinition Height="59*"/>
+                <RowDefinition Height="192*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="159*"/>
+                <ColumnDefinition Width="160*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="button2" Content="Kill" VerticalAlignment="Top" Margin="0,113,0,0" Click="Button2_Click"/>
+            <Button x:Name="button3" Content="Button" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="20" Margin="0,39,0,0"/>
+            <RadioButton x:Name="radioButton" Content="By ID" HorizontalAlignment="Left" Margin="0,77,0,0" VerticalAlignment="Top"/>
+            <RadioButton x:Name="radioButton1" Content="By Name" HorizontalAlignment="Left" Margin="0,44,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.475,0.391"/>
+        </Grid>
     </Grid>
 </Window>
