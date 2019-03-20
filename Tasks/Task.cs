@@ -15,6 +15,7 @@ namespace Tasks
         public int Threads { get; set; }
         public DateTime Time { get; set; }
         public bool Responding { get; set; }
+        private Process MyProperty;
         public Task(int id, string name, DateTime time, TimeSpan tiks, int threads, bool responding)
         {
             Id = id;
@@ -23,7 +24,23 @@ namespace Tasks
             Tiks = tiks;
             Threads = threads;
             Responding = responding;
+            MyProperty = null;
+        }
+
+        public Task(Process process)
+        {
+            Id = process.Id;
+            Name = process.ProcessName;
+            Time = process.StartTime;
+            Tiks = process.TotalProcessorTime;
+            Threads = process.Threads.Count;
+            Responding = process.Responding;
+            MyProperty = process;
         }
         
+        public Process GetMy()
+        {
+            return MyProperty;
+        }
     }
 }

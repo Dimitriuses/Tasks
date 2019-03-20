@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,16 +25,19 @@ namespace Tasks
     {
         public int tiks { get; set; }
         System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
-        
+        //Thread t;
+
+
         public MainWindow()
         {
             InitializeComponent();
             tiks = 0;
 
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            dispatcherTimer.Interval = new TimeSpan(1);
             //DataContext = new MainWindowVM();
-
+            //t = new Thread(dispatcherTimer.Start);
+            
 
 
         }
@@ -54,8 +58,9 @@ namespace Tasks
             {
                 try
                 {
-                    Task task = new Task(item.Id, item.ProcessName, item.StartTime, item.TotalProcessorTime, item.Threads.Count, item.Responding);
+                    //Task task = new Task(item.Id, item.ProcessName, item.StartTime, item.TotalProcessorTime, item.Threads.Count, item.Responding);
                     //Tasks.Add(task);
+                    Task task = new Task(item);
                     result.Add(task);
                 }
                 catch
@@ -68,17 +73,23 @@ namespace Tasks
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            dispatcherTimer.Start();
+             dispatcherTimer.Start();
+            //if (!t.IsAlive)
+            //{
+            //    t.Start();
+            //}
         }
 
         private void Button1_Click(object sender, RoutedEventArgs e)
         {
             dispatcherTimer.Stop();
+            
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+            MessageBox.Show(e.AddedItems[0].ToString());
         }
 
         private void Button2_Click(object sender, RoutedEventArgs e)
@@ -86,11 +97,16 @@ namespace Tasks
             string tmp = textBox.Text;
             if ((bool)radioButton.IsChecked)
             {
-                foreach (var item in Process)
+                foreach (var item in Process.GetProcesses(tmp))
                 {
 
                 }
             }
+        }
+
+        private void DataGrid_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
