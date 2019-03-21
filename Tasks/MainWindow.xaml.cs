@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -37,8 +39,18 @@ namespace Tasks
             dispatcherTimer.Interval = new TimeSpan(1);
             //DataContext = new MainWindowVM();
             //t = new Thread(dispatcherTimer.Start);
-            
-
+            string[] sysFiles = Directory.GetFiles(Environment.GetEnvironmentVariable("SystemRoot"), "*.exe");
+            comboBox.Items.Add("<empty>");
+            comboBox.SelectedIndex = 0;
+            foreach (var item in sysFiles)
+            {
+                comboBox.Items.Add(item);
+            }
+            sysFiles = Directory.GetFiles(Environment.GetEnvironmentVariable("SystemRoot") + @"\system32", "*.exe");
+            foreach (var item in sysFiles)
+            {
+                comboBox.Items.Add(item);
+            }
 
         }
 
@@ -97,9 +109,27 @@ namespace Tasks
             string tmp = textBox.Text;
             if ((bool)radioButton.IsChecked)
             {
-                foreach (var item in Process.GetProcesses(tmp))
+                int dtmp = Convert.ToInt32(tmp);
+                foreach (var item in Process.GetProcesses())
                 {
-
+                   if(item.Id == dtmp)
+                    {
+                        //item.Kill();
+                        if(MessageBox.Show(item.ToString()+item.Id.ToString(),"kill",MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                        {
+                            item.Kill();
+                        }
+                    }
+                }
+            }
+            else if ((bool)radioButton1.IsChecked)
+            {
+                foreach (var item in Process.GetProcesses().Where(p => p.ProcessName.Contains(tmp)))
+                {
+                    if(MessageBox.Show(item.ToString()+item.Id.ToString(),"kill",MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    {
+                        item.Kill();
+                    }
                 }
             }
         }
@@ -107,6 +137,29 @@ namespace Tasks
         private void DataGrid_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void Button3_Click(object sender, RoutedEventArgs e)
+        {
+            string patch ="";
+            if(comboBox.SelectedIndex == 0)
+            {
+                OpenFileDialog dlg = new OpenFileDialog();
+                dlg.Filter = " exe file | *.exe";
+                if (dlg.ShowDialog() == true)
+                {
+                    patch = dlg.FileName;
+                    
+                }
+            }
+            else
+            {
+                patch = comboBox.SelectedItem.ToString();
+            }
+            if( MessageBox.Show("Run ->" + patch +"?","Runing",MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                Process.Start(patch);
+            }
         }
     }
 }

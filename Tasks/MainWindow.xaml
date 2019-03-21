@@ -45,18 +45,26 @@
         <Grid Grid.Column="1" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="133*"/>
-                <RowDefinition Height="59*"/>
-                <RowDefinition Height="192*"/>
+                <RowDefinition Height="107*"/>
+                <RowDefinition Height="144*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="159*"/>
                 <ColumnDefinition Width="160*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="button2" Content="Kill" VerticalAlignment="Top" Margin="0,113,0,0" Click="Button2_Click"/>
-            <Button x:Name="button3" Content="Button" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="20" Margin="0,39,0,0"/>
-            <RadioButton x:Name="radioButton" Content="By ID" HorizontalAlignment="Left" Margin="0,77,0,0" VerticalAlignment="Top"/>
-            <RadioButton x:Name="radioButton1" Content="By Name" HorizontalAlignment="Left" Margin="0,44,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.475,0.391"/>
+            <Grid Background="#FFE87272">
+                <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="159" RenderTransformOrigin="0.55,5.435" Margin="0,10,0,0"/>
+                <Button x:Name="button2" Content="Kill" VerticalAlignment="Top" Margin="0,113,0,0" Click="Button2_Click"/>
+                <RadioButton x:Name="radioButton1" Content="By Name" HorizontalAlignment="Left" Margin="0,73,0,0" VerticalAlignment="Top"/>
+                <RadioButton x:Name="radioButton" Content="By ID" HorizontalAlignment="Left" Margin="0,93,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="label1" Content="Enter Name or Id ^^^" HorizontalAlignment="Left" Margin="0,42,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.132,0.462"/>
+            </Grid>
+            <Grid Background="#FF56D642" Margin="1,0,0,0" Grid.Column="1">
+                <Button x:Name="button3" Content="Spawn process" VerticalAlignment="Top" Height="20" Margin="0,113,0,0" Click="Button3_Click"/>
+                <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="159"/>
+                <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="23" Margin="0,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="159"/>
+                <Label x:Name="label2" Content="Parameters ^^^" HorizontalAlignment="Left" Margin="0,73,0,0" VerticalAlignment="Top"/>
+            </Grid>
         </Grid>
     </Grid>
 </Window>
