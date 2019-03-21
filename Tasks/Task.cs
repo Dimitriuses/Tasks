@@ -37,7 +37,16 @@ namespace Tasks
             Responding = process.Responding;
             MyProperty = process;
         }
-        
+        public Task(Task task)
+        {
+            Id = task.Id;
+            Name = task.Name;
+            Time = task.Time;
+            Tiks = task.Tiks;
+            Threads = task.Threads;
+            Responding = task.Responding;
+            MyProperty = task.MyProperty;
+        }
         public Process GetMy()
         {
             return MyProperty;

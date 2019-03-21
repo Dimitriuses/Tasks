@@ -100,8 +100,12 @@ namespace Tasks
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-            MessageBox.Show(e.AddedItems[0].ToString());
+            Task task = new Task((Task)e.AddedItems[0]);
+            Process p  = task.GetMy();
+            show d1 = new show(p);
+            d1.Show();
+            
+            
         }
 
         private void Button2_Click(object sender, RoutedEventArgs e)
