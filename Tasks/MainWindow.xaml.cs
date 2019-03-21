@@ -158,7 +158,7 @@ namespace Tasks
             }
             if( MessageBox.Show("Run ->" + patch +"?","Runing",MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                Process.Start(patch);
+                Process.Start(patch,textBox1.Text);
             }
         }
     }
